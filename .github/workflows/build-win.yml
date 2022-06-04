@@ -24,7 +24,7 @@ jobs:
     - name: 'Upload Artifact'
       uses: actions/upload-artifact@v3
       with:
-        name: go-build
+        name: splitthaipoem-windows-build
         path: SplitThaiPoem.exe
     - name: Release
       uses: softprops/action-gh-release@v1
