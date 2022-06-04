@@ -57,9 +57,7 @@ func main() {
 		for {
 			fileout.WriteString(leftSide[i+count])
 			fileout.WriteString("\n")
-			if count < *line_count {
-				count++
-			}
+			count++
 			if count % *line_count == 0 && count != 0 {
 				break
 			}
@@ -71,9 +69,7 @@ func main() {
 		for {
 			fileout.WriteString(rightSide[i+count])
 			fileout.WriteString("\n")
-			if count < *line_count {
-				count++
-			}
+			count++
 			if count % *line_count == 0 && count != 0 {
 				break
 			}
