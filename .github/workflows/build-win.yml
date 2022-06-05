@@ -11,6 +11,14 @@ jobs:
     strategy:
       matrix:
         os: [windows-latest, macos-latest, ubuntu-latest]
+        include:
+          - os: ubuntu-latest
+            begin_name: SplitThaiPoem
+            new_name: linux_SplitThaiPoem
+          - os: macos-latest
+            begin_name: SplitThaiPoem
+            new_name: darwin_SplitThaiPoem
+            
     runs-on: ${{ matrix.os }}
     steps:
     - uses: actions/checkout@v3
@@ -22,12 +30,23 @@ jobs:
 
     - name: Build
       run: go build -v ./...
+
+    - name: Rename build Macos
+      if: ${{ matrix.os == 'macos-build' }}
+      run: mv ${{ maxtrix.begin_name }} ${{ maxtrix.new_name }}
+
+    - name: Rename build Macos
+      if: ${{ matrix.os == 'ubuntu-build' }}
+      run: mv ${{ maxtrix.begin_name }} ${{ maxtrix.new_name }}
       
     - name: 'Upload Artifact'
       uses: actions/upload-artifact@v3
       with:
         name: ${{ matrix.os }}
-        path: SplitThaiPoem*
+        path: |
+          SplitThaiPoem.exe
+          linux_SplitThaiPoem
+          darwin_SplitThaiPoem
         
     - name: "Trying to Release"
       uses: softprops/action-gh-release@v1
@@ -35,4 +54,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        files: SplitThaiPoem*
+        files: |
+          SplitThaiPoem.exe                                                                 
+          linux_SplitThaiPoem                                                                 
+          darwin_SplitThaiPoem
