@@ -11,13 +11,6 @@ jobs:
     strategy:
       matrix:
         os: [windows-latest, macos-latest, ubuntu-latest]
-        include:
-          - os: ubuntu-latest
-            begin_name: SplitThaiPoem
-            new_name: linux_SplitThaiPoem
-          - os: macos-latest
-            begin_name: SplitThaiPoem
-            new_name: darwin_SplitThaiPoem
             
     runs-on: ${{ matrix.os }}
     steps:
@@ -33,11 +26,11 @@ jobs:
 
     - name: Rename build Macos
       if: ${{ matrix.os == 'macos-build' }}
-      run: mv ${{ maxtrix.begin_name }} ${{ maxtrix.new_name }}
+      run: mv SplitThaiPoem darwin_SplitThaiPoem
 
-    - name: Rename build Macos
+    - name: Rename build Linux
       if: ${{ matrix.os == 'ubuntu-build' }}
-      run: mv ${{ maxtrix.begin_name }} ${{ maxtrix.new_name }}
+      run: mv SplitThaiPoem linux_SplitThaiPoem
       
     - name: 'Upload Artifact'
       uses: actions/upload-artifact@v3
