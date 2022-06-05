@@ -25,11 +25,11 @@ jobs:
       run: go build -v ./...
 
     - name: Rename build Macos
-      if: ${{ matrix.os == 'macos-build' }}
+      if: ${{ matrix.os == 'macos-latest' }}
       run: mv SplitThaiPoem darwin_SplitThaiPoem
 
     - name: Rename build Linux
-      if: ${{ matrix.os == 'ubuntu-build' }}
+      if: ${{ matrix.os == 'ubuntu-latest' }}
       run: mv SplitThaiPoem linux_SplitThaiPoem
       
     - name: 'Upload Artifact'
